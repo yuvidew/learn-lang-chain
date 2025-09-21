@@ -14,10 +14,11 @@ import { Loader, Send } from "lucide-react"
 import { useChat } from "@/hooks/use-chat";
 import { useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
+import { MarkdownComp } from "./MarkdownComp";
 
-export const  ChatBox = () => {
-    const {onSubmit , loading , out} = useChat();
-    const [value , setValue] = useState("");
+export const ChatBox = () => {
+    const { onSubmit, loading, out } = useChat();
+    const [value, setValue] = useState("");
     return (
         <div className={cn("flex flex-col gap-6")}>
             <Card>
@@ -30,24 +31,23 @@ export const  ChatBox = () => {
                 <CardContent>
                     <div className=" flex flex-col gap-3.5">
 
-                        <ScrollArea className=" h-56">
-
-                        <pre className="mt-5 whitespace-pre-wrap  p-4 rounded-md text-sm overflow-x-auto">{out}</pre>
+                        <ScrollArea className=" h-56 w-full">
+                            <MarkdownComp content={out} />
                         </ScrollArea>
-                            <div className="flex flex-col gap-6">
-                                <div className="flex items-center gap-2">
-                                    <Input
-                                        type="text"
-                                        placeholder="Ask something..."
-                                        required
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
-                                    <Button variant={"outline"} onClick={() => onSubmit(value)}>
-                                    {loading ? <Loader/> :  <Send/>}
-                                    </Button>
-                                </div>
+                        <div className="flex flex-col gap-6">
+                            <div className="flex items-center gap-2">
+                                <Input
+                                    type="text"
+                                    placeholder="Ask something..."
+                                    required
+                                    value={value}
+                                    onChange={(e) => setValue(e.target.value)}
+                                />
+                                <Button variant={"outline"} onClick={() => onSubmit(value)}>
+                                    {loading ? <Loader /> : <Send />}
+                                </Button>
                             </div>
+                        </div>
                     </div>
 
                 </CardContent>
