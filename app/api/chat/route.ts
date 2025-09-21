@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
         }
 
         const model = new ChatGoogleGenerativeAI({
-            model: "gemini-1.5-flash", // choose the model variant you need
+            model: "gemini-1.5-flash", 
             apiKey,
             temperature: 0.7,
         });
